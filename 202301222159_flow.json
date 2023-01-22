@@ -1,0 +1,583 @@
+[
+    {
+        "id": "fe5ed3b516fd594f",
+        "type": "tab",
+        "label": "フロー 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "175f335aa34056f9",
+        "type": "xml",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "db5b7d11e42e9023"
+            ]
+        ]
+    },
+    {
+        "id": "1bab87e7336a3509",
+        "type": "inject",
+        "z": "fe5ed3b516fd594f",
+        "name": "mode2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"mode2\":{\"point\":[{\"lat\":0,\"lon\":0},{\"lat\":1.1,\"lon\":1.1}]}}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "d69fa1c9b52fdc57"
+            ]
+        ],
+        "info": "# aaaaa\nトイレ\n\n## bbbbb\n取柄\n"
+    },
+    {
+        "id": "4075103eb846b315",
+        "type": "mqtt out",
+        "z": "fe5ed3b516fd594f",
+        "name": "topic:test",
+        "topic": "test",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c80ba7989a9cf7dd",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "db5b7d11e42e9023",
+        "type": "json",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "4075103eb846b315"
+            ]
+        ]
+    },
+    {
+        "id": "278b7146eca1594c",
+        "type": "mqtt in",
+        "z": "fe5ed3b516fd594f",
+        "name": "topic:test",
+        "topic": "test",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c80ba7989a9cf7dd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 440,
+        "wires": [
+            [
+                "f039595ee30a9dbb",
+                "0ef090309ea97ea3"
+            ]
+        ]
+    },
+    {
+        "id": "b7a09e391fb82a47",
+        "type": "tcp in",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "server": "server",
+        "host": "",
+        "port": "8888",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "",
+        "topic": "",
+        "base64": false,
+        "x": 80,
+        "y": 300,
+        "wires": [
+            [
+                "175f335aa34056f9"
+            ]
+        ]
+    },
+    {
+        "id": "719449dbc53d5632",
+        "type": "tcp out",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "host": "localhost",
+        "port": "8888",
+        "beserver": "client",
+        "base64": false,
+        "end": false,
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "f039595ee30a9dbb",
+        "type": "debug",
+        "z": "fe5ed3b516fd594f",
+        "name": "MQ-Rcv",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f106dd9dd3c5a5d1",
+        "type": "tcp out",
+        "z": "fe5ed3b516fd594f",
+        "name": "1 メッセージ",
+        "host": "localhost",
+        "port": "8888",
+        "beserver": "reply",
+        "base64": false,
+        "end": false,
+        "tls": "",
+        "x": 1250,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "0ef090309ea97ea3",
+        "type": "json",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "0b1e376ef7e4e949",
+                "368546935d40d8f4"
+            ]
+        ]
+    },
+    {
+        "id": "0b1e376ef7e4e949",
+        "type": "switch",
+        "z": "fe5ed3b516fd594f",
+        "name": "mode1",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "mode1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 440,
+        "wires": [
+            [
+                "fd72664efe9cbf54"
+            ]
+        ]
+    },
+    {
+        "id": "368546935d40d8f4",
+        "type": "switch",
+        "z": "fe5ed3b516fd594f",
+        "name": "mode2",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "mode2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 540,
+        "wires": [
+            [
+                "58f4066165a9c26e"
+            ]
+        ]
+    },
+    {
+        "id": "c25b74df8bd684ee",
+        "type": "complete",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "scope": [
+            "e22c7b14678422ef"
+        ],
+        "uncaught": false,
+        "x": 270,
+        "y": 640,
+        "wires": [
+            [
+                "366d75603f16afd5",
+                "bb47afdc7ef7f781"
+            ]
+        ]
+    },
+    {
+        "id": "e22c7b14678422ef",
+        "type": "tcp out",
+        "z": "fe5ed3b516fd594f",
+        "name": "複数メッセージ",
+        "host": "",
+        "port": "",
+        "beserver": "reply",
+        "base64": false,
+        "end": false,
+        "tls": "",
+        "x": 1260,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "39daa7e3c0b11121",
+        "type": "inject",
+        "z": "fe5ed3b516fd594f",
+        "name": "mode1",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"mode1\":{\"a\":\"aaaa\",\"b\":\"bbbb\",\"c\":\"cccc\"}}",
+        "payloadType": "json",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "d69fa1c9b52fdc57"
+            ]
+        ]
+    },
+    {
+        "id": "58f4066165a9c26e",
+        "type": "change",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "index",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "list",
+                "pt": "msg",
+                "to": "payload.mode2.point",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "count",
+                "pt": "msg",
+                "to": "$count(payload.mode2.point)",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 540,
+        "wires": [
+            [
+                "9373be9add1a795a"
+            ]
+        ]
+    },
+    {
+        "id": "bb47afdc7ef7f781",
+        "type": "debug",
+        "z": "fe5ed3b516fd594f",
+        "name": "RcvTCP",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "366d75603f16afd5",
+        "type": "change",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "index",
+                "pt": "msg",
+                "to": "index + 1",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 640,
+        "wires": [
+            [
+                "3aab6717c08fc9e3",
+                "e6938a7d0c31af85"
+            ]
+        ]
+    },
+    {
+        "id": "3aab6717c08fc9e3",
+        "type": "switch",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "index",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "count",
+                "vt": "msg"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 640,
+        "wires": [
+            [
+                "9373be9add1a795a",
+                "12ad5ddc288242a3"
+            ]
+        ]
+    },
+    {
+        "id": "3db1026a2fdb97a0",
+        "type": "debug",
+        "z": "fe5ed3b516fd594f",
+        "name": "msg",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "fd72664efe9cbf54",
+        "type": "xml",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 730,
+        "y": 440,
+        "wires": [
+            [
+                "f106dd9dd3c5a5d1"
+            ]
+        ]
+    },
+    {
+        "id": "9373be9add1a795a",
+        "type": "change",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "($i:=index;list[$i])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 540,
+        "wires": [
+            [
+                "3db1026a2fdb97a0",
+                "970b0fee2af1e67d"
+            ]
+        ]
+    },
+    {
+        "id": "970b0fee2af1e67d",
+        "type": "xml",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 1070,
+        "y": 540,
+        "wires": [
+            [
+                "e22c7b14678422ef"
+            ]
+        ]
+    },
+    {
+        "id": "d69fa1c9b52fdc57",
+        "type": "xml",
+        "z": "fe5ed3b516fd594f",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 290,
+        "y": 80,
+        "wires": [
+            [
+                "719449dbc53d5632",
+                "87f8ecbe01304a8b"
+            ]
+        ]
+    },
+    {
+        "id": "87f8ecbe01304a8b",
+        "type": "debug",
+        "z": "fe5ed3b516fd594f",
+        "name": "TCP-Snd",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e6938a7d0c31af85",
+        "type": "debug",
+        "z": "fe5ed3b516fd594f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "12ad5ddc288242a3",
+        "type": "debug",
+        "z": "fe5ed3b516fd594f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c80ba7989a9cf7dd",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "test",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
